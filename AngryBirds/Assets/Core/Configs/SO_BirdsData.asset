@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _birdData:
   - _birdType: 0
-    _birdIcon: {fileID: 0}
-    _birdPrefab: {fileID: 0}
+    _birdIcon: {fileID: 5978898516894778253, guid: 17c558ddb31742c42894aa507b18c308, type: 3}
+    _birdPrefab: {fileID: 351739958753697711, guid: fb0eeb3a4d17c404ab8163c1063903ee, type: 3}

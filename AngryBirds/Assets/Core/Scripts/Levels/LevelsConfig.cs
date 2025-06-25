@@ -16,6 +16,7 @@ namespace Core.Scripts.Levels
         #region Properties
 
         public List<LevelData> Levels => _levels;
+        public StartCountBirdConfig StartCountBirdConfig => _startCountBirdConfig;
 
         #endregion
 
