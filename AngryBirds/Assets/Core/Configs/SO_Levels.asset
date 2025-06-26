@@ -18,3 +18,11 @@ MonoBehaviour:
     _levelCountBirdsData:
     - BirdsType: 0
       CountBirds: 2
+  - _levelNumber: 2
+    _levelCountBirdsData:
+    - BirdsType: 0
+      CountBirds: 2
+  - _levelNumber: 3
+    _levelCountBirdsData:
+    - BirdsType: 0
+      CountBirds: 2

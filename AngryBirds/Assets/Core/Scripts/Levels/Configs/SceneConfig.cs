@@ -1,16 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Core.Scripts.Menu;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Core.Scripts.Levels
 {
-    [CreateAssetMenu(order = 51, fileName = "Levels Config", menuName = "AngryBirds/Level/CounterBirds")]
+    [CreateAssetMenu(order = 51, fileName = "Levels Config", menuName = "AngryBirds/Scene")]
     public class SceneConfig : ScriptableObject
     {
         #region Fields
 
-        private List<SceneInfo> _scenes = new List<SceneInfo>();
+        [SerializeField] private List<SceneInfo> _scenes = new List<SceneInfo>();
             
         #region Properties
 
@@ -26,8 +27,8 @@ namespace Core.Scripts.Levels
     {
         #region Fields
         
-        private SceneType _sceneType;
-        private string _nameScene;
+        [SerializeField] private SceneType _sceneType;
+        [SerializeField] private string _nameScene;
 
         #region Properties
 

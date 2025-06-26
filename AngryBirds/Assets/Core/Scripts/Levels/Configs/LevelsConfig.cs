@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core.Scripts.Birds;
+using Core.Scripts.Levels.Birds;
 using UnityEngine;
 
 namespace Core.Scripts.Levels
@@ -28,8 +29,9 @@ namespace Core.Scripts.Levels
     {
         #region Fields
 
+        [Space(30)]
         [SerializeField] private int _levelNumber;
-        [SerializeField] private List<LevelCountBirdsData> _levelCountBirdsData;
+        [SerializeField] private List<LevelCountBirdsData> _levelCountBirdsData = new List<LevelCountBirdsData>();
 
         #region Properties
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Core.Scripts.Slingshot
+namespace Core.Scripts.Levels.Slingshot
 {
     [Serializable]
     public class SlingshotTrajectory

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Core.Scripts.Installers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -8,7 +7,7 @@ namespace Core.Scripts.Menu
 {
     public class LevelView : MonoBehaviour
     {
-        #region Fields
+         #region Fields
 
         [SerializeField] private List<Button> _levelButtons;
         
@@ -26,7 +25,6 @@ namespace Core.Scripts.Menu
         [Inject]
         public void Construct(IChoiceLevel choiceLevel)
         {
-            Debug.Log("2");
             _choiceLevel = choiceLevel;
         }
 
@@ -36,7 +34,8 @@ namespace Core.Scripts.Menu
         {
             for (int index = 0; index < _levelButtons.Count; index++)
             {
-                _levelButtons[index].onClick.AddListener(() => LevelButton(index + 1));
+                int index1 = index;
+                _levelButtons[index].onClick.AddListener(() => LevelButton(index1 + 1));
             }
         }
 
@@ -44,7 +43,8 @@ namespace Core.Scripts.Menu
         {
             for (int index = 0; index < _levelButtons.Count; index++)
             {
-                _levelButtons[index].onClick.RemoveListener(() => LevelButton(index  + 1));
+                int index1 = index;
+                _levelButtons[index].onClick.RemoveListener(() => LevelButton(index1  + 1));
             }
         }
 

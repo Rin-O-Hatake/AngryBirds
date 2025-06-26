@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Core.Scripts.Birds;
 using Core.Scripts.Levels;
-using Core.Scripts.Slingshot;
+using Core.Scripts.Levels.Birds;
+using Core.Scripts.Levels.Slingshot;
 using UnityEngine;
 using Zenject;
 
@@ -17,21 +19,22 @@ namespace Core.Scripts.UI
         #endregion
 
         [Inject]
-        public void Construct(LevelInfoData levelInfo, IAddingBirdSlingshot addingBirdSlingshot)
+        public void Construct(LevelInfoData levelInfo, List<IAddingBirdSlingshot> addingBirdSlingshot)
         {
+            Debug.Log("++");
             foreach (var countsBird in levelInfo.LevelData.LevelCountBirdsData)
             {
                 var birdData = 
                     levelInfo.StartCountBirdConfig.BirdData.Find(bird => bird.BirdType == countsBird.BirdsType);
                 
-                CreateBirdUI(birdData ,countsBird.CountBirds, addingBirdSlingshot.AddBirdSlingshot);
+                CreateBirdUI(birdData ,countsBird.CountBirds, addingBirdSlingshot);
             }
         }
 
-        private void CreateBirdUI(BirdData birdData, int countBird, Action<BaseBird> onCreateBirdUI)
+        private void CreateBirdUI(BirdData birdData, int countBird, List<IAddingBirdSlingshot> onCreateBirdUI)
         {
             BirdView birdView = Instantiate(_birdViewPrefab, _contentBird);
-            birdView.Initialize(birdData.BirdIcon, countBird, () => onCreateBirdUI?.Invoke(birdData.BirdPrefab));
+            // birdView.Initialize(birdData.BirdIcon, countBird, () => onCreateBirdUI?.Invoke(birdData.BirdPrefab));
         }
     }
 }

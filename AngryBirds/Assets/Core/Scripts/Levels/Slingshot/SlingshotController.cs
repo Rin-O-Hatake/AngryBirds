@@ -1,8 +1,9 @@
 using Core.Scripts.Birds;
+using Core.Scripts.Levels.Birds;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Core.Scripts.Slingshot
+namespace Core.Scripts.Levels.Slingshot
 {
     public class SlingshotController : MonoBehaviour, IAddingBirdSlingshot
     {
