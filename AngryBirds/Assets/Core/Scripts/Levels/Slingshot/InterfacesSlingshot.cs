@@ -1,3 +1,4 @@
+using System;
 using Core.Scripts.Levels.Birds;
 using UnityEngine;
 
@@ -11,12 +12,14 @@ namespace Core.Scripts.Levels.Slingshot
     
     public interface IChoiceBird
     {
+        public ISetterRemainderBirds SetterRemainderBirds { get; set; }
         public void ChooseBird(BirdsType bird);
     }
 
     public interface ICreatingBirdSlingshot
     {
         public BaseBird CreateBirdSlingshot(BaseBird birdPrefab);
+        public Vector3 GetStartPosition();
     }
 
     public interface ICalculateSlingshotTrajectory

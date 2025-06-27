@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Core.Scripts.Birds;
 using Core.Scripts.Levels;
 using Core.Scripts.Levels.Birds;
 using Core.Scripts.Levels.Slingshot;
@@ -19,7 +18,7 @@ namespace Core.Scripts.UI
         #endregion
 
         [Inject]
-        public void Construct(LevelInfoData levelInfo, List<IChoiceBird> addingBirdSlingshot)
+        public void Construct(LevelInfoData levelInfo, IChoiceBird addingBirdSlingshot)
         {
             foreach (var countsBird in levelInfo.LevelData.LevelCountBirdsData)
             {
@@ -30,17 +29,13 @@ namespace Core.Scripts.UI
             }
         }
 
-        private void CreateBirdUI(BirdData birdData, int countBird, List<IChoiceBird> choiceBirds)
+        private void CreateBirdUI(BirdData birdData, int countBird, IChoiceBird choiceBirds)
         {
             BirdView birdView = Instantiate(_birdViewPrefab, _contentBird);
 
-            List<Action> actions = new List<Action>();
-            foreach (var choicebird in choiceBirds)
-            {
-                actions.Add(() => choicebird.ChooseBird(birdData.BirdType));
-            }
-            
-            birdView.Initialize(birdData.BirdIcon, countBird, actions);
+            choiceBirds.SetterRemainderBirds = birdView;
+            birdView.Initialize(birdData.BirdIcon, countBird,birdData.BirdType,
+                () => choiceBirds.ChooseBird(birdData.BirdType));
         }
     }
 }

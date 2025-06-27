@@ -1,5 +1,4 @@
 using System;
-using Core.Scripts.Birds;
 using Core.Scripts.Levels;
 using Core.Scripts.Levels.Birds;
 using Core.Scripts.Menu;

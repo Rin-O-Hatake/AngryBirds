@@ -20,7 +20,7 @@ namespace Core.Scripts.Levels.Slingshot
         private SpringJoint2D _currentSpringJoint;
         private IStatesTrajectorySlingshot _currentStatesTrajectorySlingshot;
         
-        private bool _isDragging = false;
+        private bool _isDragging;
         private Vector2 _currentStartPosition;
 
         #endregion
@@ -45,6 +45,7 @@ namespace Core.Scripts.Levels.Slingshot
                 return;
             }
 
+            _currentBird.StartFlying();
             _isDragging = false;
             _currentBirdRigidbody.isKinematic = false;
             _currentBirdRigidbody.velocity = Vector2.zero;
@@ -144,6 +145,7 @@ namespace Core.Scripts.Levels.Slingshot
         
         public void SetStartPosition(Vector3 startPosition)
         {
+            Debug.Log($"1 {startPosition.x}");
             _currentStartPosition = startPosition;
         }
     }

@@ -23,7 +23,7 @@ namespace Core.Scripts.Levels.Birds
         public void StartFlying()
         {
             OnStartFlying?.Invoke(this);
-            Invoke(nameof(DestroyObject), 5);
+            Invoke(nameof(DestroyObject), 10);
         }
 
         private void DestroyObject()

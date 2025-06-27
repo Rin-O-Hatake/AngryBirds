@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Core.Scripts.Levels.Birds;
 using UnityEngine;
 
-namespace Core.Scripts.Birds
+namespace Core.Scripts.Levels.Birds
 {
     [CreateAssetMenu(order = 51, fileName = "Start Count Bird Config", menuName = "AngryBirds/Birds/Start Count Bird Config")]
     public class StartCountBirdConfig : ScriptableObject

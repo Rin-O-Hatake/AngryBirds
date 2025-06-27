@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using Core.Scripts.Levels.Birds;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Core.Scripts.UI
 {
-    public class BirdView : MonoBehaviour
+    public class BirdView : MonoBehaviour, ISetterRemainderBirds
     {
         #region Fields
 
@@ -16,7 +16,9 @@ namespace Core.Scripts.UI
         [SerializeField] private TMP_Text _birdText;
         [SerializeField] private Button _chooserBirdButton;
         
-        private List<Action> _onBirds;
+        private Action _onBirds;
+
+        public BirdsType BirdsType { get; private set; }
         
         #endregion
 
@@ -29,8 +31,9 @@ namespace Core.Scripts.UI
 
         #endregion
         
-        public void Initialize(Sprite birdSprite, int birdText, List<Action> clickAction)
+        public void Initialize(Sprite birdSprite, int birdText, BirdsType birdsType, Action clickAction)
         {
+            BirdsType = birdsType;
             _birdImage.sprite = birdSprite;
             _birdText.text = $"{birdText}X";
             
@@ -41,10 +44,17 @@ namespace Core.Scripts.UI
 
         private void ChooseBirdButton()
         {
-            foreach (var onBird in _onBirds)
+            _onBirds?.Invoke();
+        }
+        
+        public void SetRemainderBirds(int birds)
+        {
+            if (birds == 0)
             {
-                onBird?.Invoke();
+                Destroy(gameObject);
             }
+            
+            _birdText.text = $"{birds}X";
         }
     }
 }

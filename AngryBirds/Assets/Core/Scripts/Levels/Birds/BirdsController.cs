@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Core.Scripts.Levels.Slingshot;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Core.Scripts.Levels.Birds
         private LevelBirdsData _levelBirdsData;
         private List<BaseBird> _currentBirds = new List<BaseBird>();
         private IAddingBirdSlingshot _addingBirdSlingshot;
+        
+        public ISetterRemainderBirds SetterRemainderBirds { get; set; }
 
         #endregion
 
@@ -34,25 +37,28 @@ namespace Core.Scripts.Levels.Birds
                 }
             }
             
-            //TODO Refactor
-            _addingBirdSlingshot.SetStartPosition(_currentBirds[0].transform.position);
+            _addingBirdSlingshot.SetStartPosition(creatingBirdSlingshot.GetStartPosition());
         }
 
         private void ClearBird(BaseBird baseBird)
         {
             baseBird.OnStartFlying -= ClearBird;
             _currentBirds.Remove(baseBird);
+            
+            var birds = _currentBirds.FindAll(birdData => birdData.CurrentBirdsType == baseBird.CurrentBirdsType);
+            SetterRemainderBirds.SetRemainderBirds(birds.Count);
         }
 
         public void ChooseBird(BirdsType birdType)
         {
             var bird = _currentBirds.Find(birdData => birdData.CurrentBirdsType == birdType);
+            
             if (!bird)
             {
                 Debug.LogError("Bird is not find");
                 return;
             }
-            
+                
             bird.gameObject.SetActive(true);
             _addingBirdSlingshot.AddBirdSlingshot(bird);
         }

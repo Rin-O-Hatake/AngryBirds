@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Core.Scripts.Birds;
 using UnityEngine;
 
 namespace Core.Scripts.Levels.Birds

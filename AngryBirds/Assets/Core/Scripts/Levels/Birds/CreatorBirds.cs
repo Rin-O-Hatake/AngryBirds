@@ -10,12 +10,17 @@ namespace Core.Scripts.Levels.Birds
         [SerializeField] private Transform _birdSpawnPoint;
 
         #endregion
-
+        
         public BaseBird CreateBirdSlingshot(BaseBird Bird)
         {
             BaseBird birdObject = Instantiate(Bird, _birdSpawnPoint.position, Quaternion.identity);
             birdObject.gameObject.SetActive(false);
             return birdObject;
+        }
+
+        public Vector3 GetStartPosition()
+        {
+            return _birdSpawnPoint.position;
         }
     }
 }
