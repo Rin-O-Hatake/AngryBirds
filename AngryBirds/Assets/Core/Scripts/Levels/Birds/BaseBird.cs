@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Core.Scripts.Levels.Birds
@@ -7,8 +8,9 @@ namespace Core.Scripts.Levels.Birds
         #region Fields
 
         private BirdsType _currentBirdsType;
-        
-        public Rigidbody2D _birdRigidbody;
+
+        public Action<BaseBird> OnDestroy;
+        public Action<BaseBird> OnStartFlying;
 
         #region Properties
 
@@ -17,6 +19,18 @@ namespace Core.Scripts.Levels.Birds
         #endregion
 
         #endregion
+
+        public void StartFlying()
+        {
+            OnStartFlying?.Invoke(this);
+            Invoke(nameof(DestroyObject), 5);
+        }
+
+        private void DestroyObject()
+        {
+            OnDestroy?.Invoke(this);
+            Destroy(gameObject);
+        }
         
     }
 }

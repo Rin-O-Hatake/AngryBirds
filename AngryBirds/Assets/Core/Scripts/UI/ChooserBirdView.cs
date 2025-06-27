@@ -19,9 +19,8 @@ namespace Core.Scripts.UI
         #endregion
 
         [Inject]
-        public void Construct(LevelInfoData levelInfo, List<IAddingBirdSlingshot> addingBirdSlingshot)
+        public void Construct(LevelInfoData levelInfo, List<IChoiceBird> addingBirdSlingshot)
         {
-            Debug.Log("++");
             foreach (var countsBird in levelInfo.LevelData.LevelCountBirdsData)
             {
                 var birdData = 
@@ -31,10 +30,17 @@ namespace Core.Scripts.UI
             }
         }
 
-        private void CreateBirdUI(BirdData birdData, int countBird, List<IAddingBirdSlingshot> onCreateBirdUI)
+        private void CreateBirdUI(BirdData birdData, int countBird, List<IChoiceBird> choiceBirds)
         {
             BirdView birdView = Instantiate(_birdViewPrefab, _contentBird);
-            // birdView.Initialize(birdData.BirdIcon, countBird, () => onCreateBirdUI?.Invoke(birdData.BirdPrefab));
+
+            List<Action> actions = new List<Action>();
+            foreach (var choicebird in choiceBirds)
+            {
+                actions.Add(() => choicebird.ChooseBird(birdData.BirdType));
+            }
+            
+            birdView.Initialize(birdData.BirdIcon, countBird, actions);
         }
     }
 }

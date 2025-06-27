@@ -12,19 +12,35 @@ namespace Core.Scripts.Installers
         [SerializeField] private SlingshotController _addingBirdSlingshot;
         [SerializeField] private BirdsController _birdsController;
         [SerializeField] private CreatorBirds _creatorBirds;
+        [SerializeField] private SlingshotTrajectory _slingshotTrajectory;
 
         #endregion
 
         public override void InstallBindings()
         {
             InjectAddingBirdSlingshot();
+            InjectChoiceBird();
+            InjectStatesTrajectorySlingshot();
+            InjectCalculateSlingshotTrajectory();
             InjectCreatorBird();
         }
 
         private void InjectAddingBirdSlingshot()
         {
-            Container.Bind<IAddingBirdSlingshot>().To<SlingshotController>().FromInstance(_addingBirdSlingshot).AsSingle();
-            Container.Bind<IAddingBirdSlingshot>().To<BirdsController>().FromInstance(_birdsController).AsSingle();
+            Container.Bind<IAddingBirdSlingshot>().To<SlingshotController>().FromInstance(_addingBirdSlingshot).AsTransient();
+        }
+        private void InjectStatesTrajectorySlingshot()
+        {
+            Container.Bind<IStatesTrajectorySlingshot>().To<SlingshotTrajectory>().FromInstance(_slingshotTrajectory).AsSingle();
+        }
+        private void InjectCalculateSlingshotTrajectory()
+        {
+            Container.Bind<ICalculateSlingshotTrajectory>().To<SlingshotController>().FromInstance(_addingBirdSlingshot).AsTransient();
+        }
+        
+        private void InjectChoiceBird()
+        {
+            Container.Bind<IChoiceBird>().To<BirdsController>().FromInstance(_birdsController).AsSingle();
         }
         
         private void InjectCreatorBird()
